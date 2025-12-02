@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { Image, View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/authStyles";
 import { signup } from "../services/api";
+import logo from '../assets/image.png';
 
 export default function Signup({ navigation }) {
   const [name, setName] = useState("");
@@ -26,7 +27,8 @@ export default function Signup({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Create Account</Text>
+      <Image source={logo} style = {styles.logo}/>
+      <Text style={styles.header}>Sign up</Text>
       <View style={styles.card}>
         <TextInput
           style={styles.input}
