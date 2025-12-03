@@ -13,18 +13,18 @@ import DashboardScreen from "../screens/Dashboard";
 
 const Stack = createNativeStackNavigator();
 
-export default function MainNavigator() {
+export default function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="Welcome" component={WelcomeScreen} /> */}
-         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
-         <Stack.Screen name="Dashboard" component={DashboardScreen} />
-        {/*<Stack.Screen name="Send" component={SendMoneyScreen} />
+        {/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+        {/* <Stack.Screen name="Send" component={SendMoneyScreen} />
         <Stack.Screen name="Receive" component={ReceiveMoneyScreen} />
         <Stack.Screen name="History" component={HistoryScreen} />
-        <Stack.Screen name="Support" component={SupportScreen} /> */}
+        <Stack.Screen name="Support" component={SupportScreen} />  */}
       </Stack.Navigator>
     </NavigationContainer>
   );

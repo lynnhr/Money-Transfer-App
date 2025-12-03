@@ -1,39 +1,36 @@
 import { StyleSheet } from "react-native";
-import colors from "./color";
+import color from "./color";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: color.background,
     padding: 24,
     justifyContent: "center",
   },
   header: {
     fontSize: 28,
     fontWeight: "bold",
-    color: colors.primary,
+    color: "color.header",
     marginBottom: 20,
     textAlign: "center",
   },
   card: {
-    backgroundColor: colors.card,
-    padding: 20,
-    borderRadius: 20,
+    padding: 35,
   },
   input: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
     padding: 12,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: colors.secondary,
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: color.textDark
   },
   button: {
-    backgroundColor: colors.primary,
-    padding: 14,
+    backgroundColor: color.primary,
+    padding: 20,
     borderRadius: 12,
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 20,
+    // boxShadow: '5px 10px 10px rgba(201, 55, 182, 0.4)',
   },
   buttonText: {
     color: "#fff",
@@ -41,13 +38,18 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   footerText: {
-    marginTop: 20,
+    // marginTop: 20,
     textAlign: "center",
-    color: colors.textLight,
+    color: color.textLight,
   },
   error: {
     color: "red",
     marginBottom: 10,
     textAlign: "center",
   },
+  logo: {
+    alignSelf: "center",
+    resizeMode: "contain",
+    width: 150
+  }
 });
