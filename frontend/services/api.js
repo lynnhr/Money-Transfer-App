@@ -1,4 +1,5 @@
-const API_URL = "http://192.168.1.9:3000";
+const API_URL = "http://192.168.3.102:3000";
+
 
 async function request(path, options = {}) {
   try {
