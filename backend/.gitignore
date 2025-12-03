@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# Ignore database config
+config/db.js
+config/db.local.js
+
+# Ignore env files
+.env
+*.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/

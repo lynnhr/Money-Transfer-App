@@ -39,6 +39,3 @@ yarn-error.*
 # generated native folders
 /ios
 /android
-
-backend/config/db.js
-frontend/services/api.js
