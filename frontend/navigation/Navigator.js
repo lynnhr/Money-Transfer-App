@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import WelcomeScreen from "../screens/WelcomeScreen";
-import LoginScreen from "../screens/Login";
+import Login from "../screens/Login";
 import Signup from "../screens/Signup";
-import DashboardScreen from "../screens/Dashboard";
+import Dashboard from "../screens/Dashboard";
 // import SendMoneyScreen from "../screens/SendMoneyScreen";
 // import ReceiveMoneyScreen from "../screens/ReceiveMoneyScreen";
 // import HistoryScreen from "../screens/HistoryScreen";
