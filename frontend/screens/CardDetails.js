@@ -17,7 +17,7 @@ export default function CardDetails({ route, navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Back Button */}
+      
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backArrow}>←</Text>
       </TouchableOpacity>
@@ -28,7 +28,7 @@ export default function CardDetails({ route, navigation }) {
         Please select a color to differentiate your card and organize them better.
       </Text>
 
-      {/* Card Preview */}
+      
       <View style={[styles.cardPreview, { backgroundColor: selectedColor }]}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardName}>{user?.name}</Text>
@@ -49,7 +49,7 @@ export default function CardDetails({ route, navigation }) {
         </View>
       </View>
 
-      {/* Color Options */}
+      
       <View style={styles.colorsContainer}>
         {colorOptions.map((color, index) => (
           <TouchableOpacity
@@ -60,24 +60,20 @@ export default function CardDetails({ route, navigation }) {
         ))}
       </View>
 
-     {/* Confirm Button */}
+
    <TouchableOpacity
     style={styles.confirmButton}
     onPress={() => {
     alert("Color changed successfully!");
 
-    navigation.goBack(); // <-- return to the SAME Dashboard instance
+    navigation.goBack(); 
 
-    // send the color back
+   
     route.params?.onColorChange(selectedColor);
     }}
 >
    <Text style={styles.confirmText}>Confirm</Text>
   </TouchableOpacity>
-
-
-
-
 
     </ScrollView>
   );

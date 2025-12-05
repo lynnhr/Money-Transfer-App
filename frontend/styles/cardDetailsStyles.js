@@ -12,7 +12,7 @@ export default StyleSheet.create({
   width: 40,
   height: 40,
   borderRadius: 20,
-  backgroundColor: "#7B2CBF",  // purple (you can change)
+  backgroundColor: "#7B2CBF",  
   justifyContent: "center",
   alignItems: "center",
   marginTop: 20,

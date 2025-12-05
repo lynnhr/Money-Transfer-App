@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  // Root container for the whole screen
+  
   container: {
     flex: 1,
-    // backgroundColor: "#ffffff",
+   
 
   },
 
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "#38033bff",
+    
   },
 
   gradientFrame: {
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 20,
-    overflow: "hidden", // rounds the camera corners
+    overflow: "hidden", 
     backgroundColor: "#000",
   },
 
@@ -45,11 +45,11 @@ export default StyleSheet.create({
     textAlign: "center",
   },
 
-  // ───────── CONFIRMATION AREA ─────────
+ 
   confirmBox: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 200, // push the confirmation content down a bit
+    paddingTop: 200, 
     alignItems: "center",
     backgroundColor: "#ffffff",
   },
@@ -124,7 +124,7 @@ export default StyleSheet.create({
     fontWeight: "600",
   },
 
-  // Used when permission is not granted
+  
   center: {
     flex: 1,
     justifyContent: "center",

@@ -11,11 +11,11 @@ export default function Dashboard({ navigation, route }) {
   const [history, setHistory] = useState([]);
   const [menuVisible, setMenuVisible] = useState(false);
 
-  // Card color state
+
   const defaultColor = "#38033bff";
   const [cardColor, setCardColor] = useState(defaultColor);
 
-  // Apply updated card color from CardDetails
+
   useEffect(() => {
     if (route.params?.updatedColor) {
       setCardColor(route.params.updatedColor);
@@ -35,17 +35,16 @@ export default function Dashboard({ navigation, route }) {
     if (balRes.data) setBalance(balRes.data.balance);
     if (histRes.data) setHistory(histRes.data);
 
-    console.log("🔥 HISTORY FROM API:", histRes.data);
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
-      {/* ────────────── HEADER + PROFILE ────────────── */}
+    
       <View style={styles.headerRow}>
         <Text style={styles.welcome}>Welcome, {user?.name || "User"} 👋</Text>
 
-        {/* PROFILE BUTTON */}
+        
         <TouchableOpacity onPress={() => setMenuVisible(!menuVisible)}>
           <Image
             source={require("../assets/icon.png")}
@@ -54,7 +53,7 @@ export default function Dashboard({ navigation, route }) {
         </TouchableOpacity>
       </View>
 
-      {/* DROPDOWN MENU */}
+      
       {menuVisible && (
         <View style={styles.dropdownMenu}>
           <TouchableOpacity
@@ -77,7 +76,6 @@ export default function Dashboard({ navigation, route }) {
         </View>
       )}
 
-      {/* ────────────── BALANCE CARD ────────────── */}
       <View style={[styles.cardContainer, { backgroundColor: cardColor }]}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardTitle}>BonPay Balance</Text>
@@ -103,7 +101,7 @@ export default function Dashboard({ navigation, route }) {
         </View>
       </View>
 
-      {/* ────────────── ACTION BUTTONS ────────────── */}
+     
           <View style={styles.actionsRow}>
       <TouchableOpacity 
         style={styles.actionButton}
@@ -120,7 +118,7 @@ export default function Dashboard({ navigation, route }) {
       </TouchableOpacity>
     </View>
 
-    {/* Actions Row 2 */}
+
     <View style={styles.actionsRow}>
       <TouchableOpacity
         style={styles.actionButton}
@@ -137,7 +135,7 @@ export default function Dashboard({ navigation, route }) {
       </TouchableOpacity>
     </View>
 
-    {/* Row 3 → Scan button centered alone */}
+   
     <View style={{ alignItems: "center", marginTop: 20 }}>
       <TouchableOpacity
         style={[styles.actionButton, { width: 140 }]}
@@ -146,7 +144,7 @@ export default function Dashboard({ navigation, route }) {
         <Text style={styles.actionText}>Scan</Text>
       </TouchableOpacity>
     </View>
-      {/* ────────────── RECENT TRANSACTIONS ────────────── */}
+     
       <Text style={styles.sectionTitle}>Recent Transactions</Text>
 
       {history.length === 0 && (

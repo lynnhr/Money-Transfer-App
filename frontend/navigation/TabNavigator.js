@@ -31,7 +31,7 @@ export default function TabNavigator({ route }) {
           if (route.name === "Dashboard") iconName = "home";
           if (route.name === "Receive") iconName = "download";
           if (route.name === "Scan") iconName = "camera";
-          if(route.name == "Support") iconName = "support"
+          if(route.name == "Support") iconName = "inbox"
 
           return (
             <View style={{ alignItems: "center" }}>

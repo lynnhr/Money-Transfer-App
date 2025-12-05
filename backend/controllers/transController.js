@@ -1,6 +1,6 @@
 const db = require("../config/db");
 
-// ───────────────────────── sendMoney ─────────────────────────
+
 exports.sendMoney = async (req, res) => {
   const connection = await db.getConnection();
 
@@ -49,7 +49,7 @@ exports.sendMoney = async (req, res) => {
   }
 };
 
-// ───────────────────────── getBalance ─────────────────────────
+
 exports.getBalance = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -66,7 +66,7 @@ exports.getBalance = async (req, res) => {
   }
 };
 
-// ───────────────────────── getHistory ─────────────────────────
+
 exports.getHistory = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -101,7 +101,6 @@ exports.getHistory = async (req, res) => {
 };
 
 
-// ───────────────────────── scanQR (QR payment) ─────────────────────────
 exports.scanQR = async (req, res) => {
   const connection = await db.getConnection();
 
@@ -114,7 +113,7 @@ exports.scanQR = async (req, res) => {
 
     await connection.beginTransaction();
 
-    // 1. Check sender balance
+
     const [senderRows] = await connection.query(
       "SELECT balance FROM users WHERE id = ?",
       [senderId]
@@ -131,7 +130,7 @@ exports.scanQR = async (req, res) => {
       return res.status(400).json({ error: "Insufficient balance" });
     }
 
-    // 2. Make sure receiver exists
+    
     const [receiverRows] = await connection.query(
       "SELECT id FROM users WHERE id = ?",
       [receiverId]
@@ -141,19 +140,18 @@ exports.scanQR = async (req, res) => {
       return res.status(404).json({ error: "Receiver not found" });
     }
 
-    // 3. Deduct from sender
+   
     await connection.query(
       "UPDATE users SET balance = balance - ? WHERE id = ?",
       [amount, senderId]
     );
 
-    // 4. Add to receiver
+   
     await connection.query(
       "UPDATE users SET balance = balance + ? WHERE id = ?",
       [amount, receiverId]
     );
 
-    // 5. Save transaction
     await connection.query(
       `INSERT INTO transactions (sender_id, receiver_id, amount, message, status)
        VALUES (?,?,?,?, 'SUCCESS')`,

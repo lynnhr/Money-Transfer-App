@@ -15,7 +15,7 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
-  // SMALL INPUT FORM
+ 
   formCard: {
     padding: 15,
     backgroundColor: "#fff",

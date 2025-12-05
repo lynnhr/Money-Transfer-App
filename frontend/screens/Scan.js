@@ -18,7 +18,7 @@ export default function Scan({ route, navigation }) {
     if (!permission?.granted) requestPermission();
   }, []);
 
-  // When QR code is scanned
+ 
   const handleScan = ({ data }) => {
     console.log("SCANNED RAW DATA:", data);
 
@@ -32,7 +32,7 @@ export default function Scan({ route, navigation }) {
     }
   };
 
-  // Confirm payment
+  
   const handleConfirm = async () => {
     const finalAmount = qrData.amount ?? Number(amount);
 
@@ -76,7 +76,7 @@ export default function Scan({ route, navigation }) {
       end={{ x: 1, y: 1 }}
       style={scanStyles.container}
     >
-      {/* ───────────────────────── QR SCANNING ───────────────────────── */}
+  
       {scanning ? (
         <View style={scanStyles.cameraWrapper}>
           <LinearGradient
@@ -95,7 +95,7 @@ export default function Scan({ route, navigation }) {
           <Text style={scanStyles.scanText}>Align QR Code Inside the Frame</Text>
         </View>
       ) : (
-        /* ───────────────────── CONFIRMATION SCREEN ───────────────────── */
+ 
         <View style={scanStyles.confirmBox}>
           <Image
             source={require("../assets/image.png")}
@@ -116,12 +116,12 @@ export default function Scan({ route, navigation }) {
             />
           )}
 
-          {/* Confirm Payment */}
+       
           <TouchableOpacity style={scanStyles.button} onPress={handleConfirm}>
             <Text style={scanStyles.buttonText}>Send Money</Text>
           </TouchableOpacity>
 
-          {/* Scan Again */}
+         
           <TouchableOpacity
             style={scanStyles.secondaryButton}
             onPress={() => setScanning(true)}

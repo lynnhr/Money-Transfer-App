@@ -33,7 +33,7 @@ export default function Receive({ route }) {
       <Text style={styles.title}>Receive Money</Text>
       <Text style={styles.subtitle}>Show this QR to the sender</Text>
 
-      {/* QR CARD */}
+     
       <View style={styles.qrCard}>
         {qrValue ? (
           <QRCode value={qrValue} size={200} />
@@ -42,7 +42,7 @@ export default function Receive({ route }) {
         )}
       </View>
 
-      {/* INFO */}
+     
       <View style={styles.infoCard}>
         <Text style={styles.infoText}>
           Generate the code: A unique QR with your wallet info is created.{"\n\n"}
@@ -51,18 +51,6 @@ export default function Receive({ route }) {
         </Text>
       </View>
 
-      {/* OPTIONS */}
-      {/* <TouchableOpacity onPress={() => setMode("any")}>
-        <Text
-          style={{
-            marginTop: 20,
-            color: mode === "any" ? "#b46cf7" : "#fff",
-            fontWeight: "700",
-          }}
-        >
-          • Receive ANY amount
-        </Text>
-      </TouchableOpacity> */}
 
       <TouchableOpacity onPress={() => setMode("fixed")}>
         <Text
@@ -93,7 +81,7 @@ export default function Receive({ route }) {
         />
       )}
 
-      {/* BUTTON */}
+      
       <TouchableOpacity
         style={{
           backgroundColor: "#9c27b0",

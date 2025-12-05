@@ -60,7 +60,7 @@ export default function SendMoneyScreen({ route, navigation })
 
     setTimeout(() => {
     navigation.replace("Dashboard", { user });
-  }, 1000); //i added this to take us bavk to the dashboardd lynn 
+  }, 1000); 
   };
 
   return (

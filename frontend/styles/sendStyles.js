@@ -6,7 +6,7 @@ export default StyleSheet.create({
   flex: 1,
   padding: 24,
   backgroundColor: colors.background,
-  justifyContent: "center",   // ⬅️ centers vertically
+  justifyContent: "center",  
 },
 
   title: {

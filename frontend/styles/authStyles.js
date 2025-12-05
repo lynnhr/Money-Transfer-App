@@ -30,7 +30,6 @@ export default StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     marginTop: 20,
-    // boxShadow: '5px 10px 10px rgba(201, 55, 182, 0.4)',
   },
   buttonText: {
     color: "#fff",
@@ -38,7 +37,6 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   footerText: {
-    // marginTop: 20,
     textAlign: "center",
     color: color.textLight,
   },

@@ -66,7 +66,7 @@ export default function History({ route, navigation }) {
   return (
     <View style={styles.container}>
 
-      {/* Back button */}
+      
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backArrow}>←</Text>
       </TouchableOpacity>

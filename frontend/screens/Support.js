@@ -36,7 +36,7 @@ export default function SupportScreen() {
   ];
 
   const toggleFAQ = (index) => {
-    // LayoutAnimation.easeInEaseOut();
+   
     setOpenIndex(openIndex === index ? null : index);
   };
 
@@ -55,11 +55,11 @@ export default function SupportScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* TITLE */}
+      
     <Image source={logo} style = {styles.logo}/>
       <Text style={styles.header}>Support</Text>
 
-      {/* SMALL SUPPORT FORM */}
+      
       <View style={styles.formCard}>
         <TextInput
           style={styles.input}
@@ -88,7 +88,7 @@ export default function SupportScreen() {
         {status ? <Text style={styles.status}>{status}</Text> : null}
       </View>
 
-      {/* FAQ SECTION */}
+      
       <Text style={styles.faqHeader}>Frequently Asked</Text>
 
       <View style={styles.faqContainer}>

@@ -45,12 +45,10 @@ export default StyleSheet.create({
   width: 50,
   height: 50,
   borderRadius: 20,
-  backgroundColor: "#7B2CBF",  // purple (you can change)
+  backgroundColor: "#7B2CBF",  
   justifyContent: "center",
   alignItems: "center",
   marginTop: 20,
-//   marginLeft: 20,
-//   elevation: 3, // Android shadow
   shadowColor: "#000",
   shadowOpacity: 0.15,
   shadowOffset: { width: 0, height: 2 },
