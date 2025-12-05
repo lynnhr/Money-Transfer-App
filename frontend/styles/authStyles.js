@@ -51,5 +51,12 @@ export default StyleSheet.create({
     alignSelf: "center",
     resizeMode: "contain",
     width: 150
-  }
+  },
+  forgotPassword: {
+  color: "#7B2CBF",
+  marginBottom: 10,
+  textAlign: "right",
+  width: "100%",
+  paddingRight:20,
+},
 });

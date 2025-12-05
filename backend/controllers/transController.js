@@ -1,5 +1,6 @@
 const db = require("../config/db");
 
+// ───────────────────────── sendMoney ─────────────────────────
 exports.sendMoney = async (req, res) => {
   const connection = await db.getConnection();
 
@@ -31,14 +32,14 @@ exports.sendMoney = async (req, res) => {
     );
 
     await connection.query(
-      `INSERT INTO transactions (sender_id, receiver_id, amount, message, status)
-       VALUES (?,?,?,?, 'SUCCESS')`,
-      [senderId, receiverId, amount, message || ""]
-    );
+  `INSERT INTO transactions (sender_id, receiver_id, amount, message, status)
+   VALUES (?, ?, ?, ?, 'SUCCESS')`,
+  [senderId, receiverId, amount, "QR Payment"]
+);
+
 
     await connection.commit();
     res.json({ message: "Transfer complete" });
-
   } catch (err) {
     console.log(err);
     await connection.rollback();
@@ -48,40 +49,124 @@ exports.sendMoney = async (req, res) => {
   }
 };
 
-
+// ───────────────────────── getBalance ─────────────────────────
 exports.getBalance = async (req, res) => {
   try {
     const { userId } = req.params;
 
     const [rows] = await db.query(
-      "SELECT balance FROM users WHERE id=?",
+      "SELECT balance FROM users WHERE id = ?",
       [userId]
     );
 
     res.json(rows[0]);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: "Could not fetch balance" });
   }
 };
 
-
+// ───────────────────────── getHistory ─────────────────────────
 exports.getHistory = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const [rows] = await db.query(
-      `SELECT t.id, t.amount, t.message, t.status, t.created_at,
-              u1.name AS sender, u2.name AS receiver
-       FROM transactions t
-       JOIN users u1 ON t.sender_id = u1.id
-       JOIN users u2 ON t.receiver_id = u2.id
-       WHERE sender_id = ? OR receiver_id = ?
-       ORDER BY t.created_at DESC`,
-      [userId, userId]
-    );
+    const sql = `
+      SELECT 
+        t.id,
+        t.sender_id,
+        t.receiver_id,
+        t.amount,
+        t.message,
+        t.status,
+        t.created_at,
+        u1.name AS sender,
+        u2.name AS receiver
+      FROM transactions t
+      JOIN users u1 ON t.sender_id = u1.id
+      JOIN users u2 ON t.receiver_id = u2.id
+      WHERE t.sender_id = ? OR t.receiver_id = ?
+      ORDER BY t.created_at DESC
+    `;
+
+    const result = await db.query(sql, [userId, userId]);
+    const rows = result[0];
 
     res.json(rows);
+
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: "Could not fetch history" });
+  }
+};
+
+
+// ───────────────────────── scanQR (QR payment) ─────────────────────────
+exports.scanQR = async (req, res) => {
+  const connection = await db.getConnection();
+
+  try {
+    const { senderId, receiverId, amount } = req.body;
+
+    if (!senderId || !receiverId || !amount) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
+
+    await connection.beginTransaction();
+
+    // 1. Check sender balance
+    const [senderRows] = await connection.query(
+      "SELECT balance FROM users WHERE id = ?",
+      [senderId]
+    );
+
+    if (!senderRows.length) {
+      await connection.rollback();
+      return res.status(404).json({ error: "Sender not found" });
+    }
+
+    const senderBalance = senderRows[0].balance;
+    if (senderBalance < amount) {
+      await connection.rollback();
+      return res.status(400).json({ error: "Insufficient balance" });
+    }
+
+    // 2. Make sure receiver exists
+    const [receiverRows] = await connection.query(
+      "SELECT id FROM users WHERE id = ?",
+      [receiverId]
+    );
+    if (!receiverRows.length) {
+      await connection.rollback();
+      return res.status(404).json({ error: "Receiver not found" });
+    }
+
+    // 3. Deduct from sender
+    await connection.query(
+      "UPDATE users SET balance = balance - ? WHERE id = ?",
+      [amount, senderId]
+    );
+
+    // 4. Add to receiver
+    await connection.query(
+      "UPDATE users SET balance = balance + ? WHERE id = ?",
+      [amount, receiverId]
+    );
+
+    // 5. Save transaction
+    await connection.query(
+      `INSERT INTO transactions (sender_id, receiver_id, amount, message, status)
+       VALUES (?,?,?,?, 'SUCCESS')`,
+      [senderId, receiverId, amount, "QR payment"]
+    );
+
+    await connection.commit();
+    return res.json({ success: true, message: "QR payment complete" });
+  } catch (err) {
+    console.log(err);
+    await connection.rollback();
+    return res.status(500).json({ error: "Transaction error" });
+  } finally {
+    connection.release();
   }
 };

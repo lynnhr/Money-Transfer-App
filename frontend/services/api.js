@@ -1,5 +1,6 @@
 const API_URL = "http://192.168.1.9:3000";
 
+
 async function request(path, options = {}) {
   try {
     const res = await fetch(API_URL + path, options);
@@ -46,3 +47,29 @@ export const sendSupport = (payload) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+
+  // export const processQR = async (data) => {
+  // try {
+  //   const res = await fetch(`${BASE_URL}/transactions/qr/scan`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(data),
+  //   });
+  //   return await res.json();
+  // } catch (err) {
+  //   return { error: "Network error" };
+  // }
+// };
+
+
+
+export const processQR = (payload) =>
+  request("/transactions/qr/scan", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+
+
+
