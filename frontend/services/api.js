@@ -1,4 +1,5 @@
-const API_URL = "http://192.168.1.9:3000";
+const API_URL = "http://172.16.128.236:3000";
+
 
 async function request(path, options = {}) {
   try {
@@ -46,3 +47,15 @@ export const sendSupport = (payload) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+
+
+export const processQR = (payload) =>
+  request("/transactions/qr/scan", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+
+
+

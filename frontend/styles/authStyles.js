@@ -30,7 +30,6 @@ export default StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     marginTop: 20,
-    // boxShadow: '5px 10px 10px rgba(201, 55, 182, 0.4)',
   },
   buttonText: {
     color: "#fff",
@@ -38,7 +37,6 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   footerText: {
-    // marginTop: 20,
     textAlign: "center",
     color: color.textLight,
   },
@@ -51,5 +49,12 @@ export default StyleSheet.create({
     alignSelf: "center",
     resizeMode: "contain",
     width: 150
-  }
+  },
+  forgotPassword: {
+  color: "#7B2CBF",
+  marginBottom: 10,
+  textAlign: "right",
+  width: "100%",
+  paddingRight:20,
+},
 });

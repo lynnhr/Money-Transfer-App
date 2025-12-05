@@ -2,26 +2,37 @@ import React, { useState } from "react";
 import { Image, View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/authStyles";
 import { login } from "../services/api";
-import logo from '../assets/image.png';
+import logo from "../assets/image.png";
 
-export default function Signup({ navigation }) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSignup = async () => {
+  const handleLogin = async () => {
     setError(null);
     setLoading(true);
+
+   
+    console.log("Sending:", email, password); 
+
     const { data, error } = await login({ email, password });
+
+    console.log("Response:", data, error);
+
+    
     setLoading(false);
 
     if (error) {
       setError(error);
     } else {
       navigation.replace("Dashboard", { user: data });
+      navigation.replace("Tabs", { user: data });
+
     }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -41,17 +52,22 @@ export default function Signup({ navigation }) {
           value={password}
           onChangeText={setPassword}
         />
+         <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
         {Error && <Text style={styles.error}>{Error}</Text>}
-        <TouchableOpacity style={styles.button} onPress={handleSignup}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>
             {loading ? "Creating..." : "Log in"}
           </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("Sign up")}>
+     
+      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
         <Text style={styles.footerText}>
           Don't have an account? Sign up
         </Text>
+
       </TouchableOpacity>
     </View>
   );

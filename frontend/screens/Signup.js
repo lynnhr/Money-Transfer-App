@@ -22,6 +22,7 @@ export default function Signup({ navigation }) {
       setError(error);
     } else {
       navigation.replace("Dashboard", { user: data });
+      navigation.replace("Tabs", { user: data });
     }
   };
 
