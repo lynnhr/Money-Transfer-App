@@ -1,4 +1,4 @@
-# Money Transfer App — PROG421-EC10
+# Money Transfer App — BonPay
 
 Cross-platform React Native mobile app for peer-to-peer and domestic transfers. Backend: Node.js + Express + MySQL.
 
